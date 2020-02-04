@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interview.R;
-import com.example.interview.activity.EventActivity;
+import com.example.interview.activity.ParticipantActivity;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.eventText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EventActivity.class);
+                Intent intent = new Intent(context, ParticipantActivity.class);
                 intent.putExtra("userId", userId);
                 context.startActivity(intent);
             }

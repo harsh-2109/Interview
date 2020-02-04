@@ -21,14 +21,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventActivity extends AppCompatActivity {
+public class ParticipantActivity extends AppCompatActivity {
 
     private List<User> participantList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
+        setContentView(R.layout.activity_participant);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,8 +36,8 @@ public class EventActivity extends AppCompatActivity {
         TextView eventDate = findViewById(R.id.event_date);
         TextView eventTime = findViewById(R.id.event_time);
         RecyclerView participantsList = findViewById(R.id.event_participants_list);
-        participantsList.setLayoutManager(new LinearLayoutManager(EventActivity.this));
-        participantsList.setAdapter(new ParticipantAdapter(participantList, EventActivity.this));
+        participantsList.setLayoutManager(new LinearLayoutManager(ParticipantActivity.this));
+        participantsList.setAdapter(new ParticipantAdapter(participantList, ParticipantActivity.this));
 
         MockedData mockedData = new MockedData();
         int userId = getIntent().getIntExtra("userId", 2);
@@ -46,8 +46,8 @@ public class EventActivity extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(mockedData.getMeetingsForUser(new User(userId)));
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-            eventDate.setText(jsonObject.getString("date"));
-            eventTime.setText(jsonObject.getString("time"));
+            eventDate.setText("Date: " + jsonObject.getString("date"));
+            eventTime.setText("Time: " + jsonObject.getString("time"));
 
             JSONArray jsonString = jsonObject.getJSONArray("participants");
             for (int i = 0; i < jsonString.length(); i++) {
